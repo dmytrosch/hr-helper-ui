@@ -38,9 +38,6 @@ export default async function ProjectsPage({ searchParams }) {
           <Title level={2}>Projects</Title>
           <Text type="secondary">Manage company projects and teams</Text>
         </div>
-        <Button type="primary" icon={<Plus size={16} />} size="large">
-          New Project
-        </Button>
       </div>
 
       <div className={styles.grid}>
