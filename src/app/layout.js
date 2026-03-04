@@ -1,6 +1,12 @@
+import 'antd/dist/reset.css';
 import './globals.css';
+import styles from './layout.module.css';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
-import { ConfigProvider } from 'antd';
+import Layout from 'antd/lib/layout';
+import Content from 'antd/lib/layout/layout';
+import Navbar from '@/components/Navbar';
+import { Suspense } from 'react';
+import Spin from 'antd/lib/spin';
 
 export const metadata = {
   title: 'HR Helper',
@@ -9,21 +15,17 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-   <html lang="en">
+    <html lang="en">
       <body>
         <AntdRegistry>
-          <ConfigProvider
-            theme={{
-              token: {
-                colorPrimary: '#1677ff',
-                borderRadius: 8,
-              },
-            }}
-          >
-            <main style={{ padding: '20px' }}>
-              {children}
-            </main>
-          </ConfigProvider>
+          <Layout className={styles.layout}>
+            <Navbar />
+            <Suspense fallback={<Spin fullscreen />}>
+              <Content className={styles.content}>
+                {children}
+              </Content>
+            </Suspense>
+          </Layout>
         </AntdRegistry>
       </body>
     </html>
