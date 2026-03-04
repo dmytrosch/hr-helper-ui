@@ -1,0 +1,48 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.header {
+  margin-bottom: 40px;
+}
+
+.headerSubtitle {
+  font-size: 16px;
+}
+
+.card {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.cardBody {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.iconWrapper {
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.iconWrapper--blue {
+  background: #e6f7ff;
+}
+
+.iconWrapper--green {
+  background: #f6ffed;
+}
+
+.iconWrapper--orange {
+  background: #fff7e6;
+}
+
+.statTitle {
+  margin: 0;
+}
+
+.divider {
+  margin: 40px 0;
+}
