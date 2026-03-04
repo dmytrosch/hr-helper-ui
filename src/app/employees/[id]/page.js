@@ -2,17 +2,17 @@ import { getClient } from "@/lib/apollo-client";
 import { gql } from "@apollo/client";
 import { notFound } from "next/navigation";
 
-// Ant Design Imports
 import Title from 'antd/lib/typography/Title';
 import Text from 'antd/lib/typography/Text';
 import Card from 'antd/lib/card';
 import Button from 'antd/lib/button';
 import Tag from 'antd/lib/tag';
 
-import { Edit2, Trash2, Calendar, Mail, Phone, MapPin, Briefcase } from 'lucide-react';
+import { Edit2, Calendar, Mail, Phone, MapPin, Briefcase } from 'lucide-react';
 
 import styles from './EmployeePage.module.css';
-import BackButton from "@/components/BackButton.js/BackButton";
+import BackButton from "@/components/BackButton/BackButton";
+import DeleteEmployeeButton from "@/components/DeleteEmployeeButton";
 
 const formatDate = (dateValue) => {
   if (!dateValue) return 'N/A';
@@ -59,7 +59,7 @@ export default async function EmployeePage({ params }) {
 
   return (
     <div className={styles.employeeContainer}>
-      <BackButton route='/employees' label='Back to employees'/>
+      <BackButton route='/employees' label='Back to employees' />
       <div className={styles.employeeHeader}>
         <div className={styles.userInfo}>
           <Title level={2} style={{ margin: 0 }}>
@@ -73,12 +73,14 @@ export default async function EmployeePage({ params }) {
 
         <div className={styles.actionButtons}>
           <Button icon={<Edit2 size={16} />}>Edit Profile</Button>
-          <Button danger icon={<Trash2 size={16} />}>Delete</Button>
+          <DeleteEmployeeButton
+            employeeId={employee.id}
+            employeeName={`${employee.first_name} ${employee.last_name}`}
+          />
         </div>
       </div>
 
       <div className={styles.cardGrid}>
-        {/* Contact Information */}
         <Card title="Contact Information" variant="bordless">
           <div className={styles.infoItem}>
             <span className={styles.label}>Email Address</span>
@@ -94,7 +96,6 @@ export default async function EmployeePage({ params }) {
           </div>
         </Card>
 
-        {/* Work & Personal Details */}
         <Card title="Work & Personal" variant="bordless">
           <div className={styles.infoItem}>
             <span className={styles.label}>Current Project</span>
