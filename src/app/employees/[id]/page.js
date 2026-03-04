@@ -59,7 +59,7 @@ export default async function EmployeePage({ params }) {
 
   return (
     <div className={styles.employeeContainer}>
-      <BackButton route='/employees' label='Back to employees' />
+      <BackButton />
       <div className={styles.employeeHeader}>
         <div className={styles.userInfo}>
           <Title level={2} style={{ margin: 0 }}>
@@ -72,7 +72,7 @@ export default async function EmployeePage({ params }) {
         </div>
 
         <div className={styles.actionButtons}>
-          <EditEmployeeModal employee={employee}/>
+          <EditEmployeeModal employee={employee} />
           <DeleteEmployeeButton
             employeeId={employee.id}
             employeeName={`${employee.first_name} ${employee.last_name}`}

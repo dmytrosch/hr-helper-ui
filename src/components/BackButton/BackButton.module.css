@@ -6,11 +6,20 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  background: none;
+  border: none; 
+  padding: 0;
   color: #595959;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
   transition: color 0.2s;
-  text-decoration: none;
 }
 
 .backLink:hover {
   color: #1677ff;
+}
+
+.backLink span {
+  font-weight: 500;
 }
