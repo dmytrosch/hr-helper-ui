@@ -1,6 +1,7 @@
 import { getClient } from "@/lib/apollo-client";
 import { gql } from "@apollo/client";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 
 import Title from 'antd/lib/typography/Title';
 import Text from 'antd/lib/typography/Text';
@@ -35,8 +36,8 @@ const GET_EMPLOYEE = gql`
       city
       birthday
       join_date
-      position { position_name }
-      project { name }
+      position { position_name id }
+      project { name id }
     }
   }
 `;
@@ -100,7 +101,17 @@ export default async function EmployeePage({ params }) {
           <div className={styles.infoItem}>
             <span className={styles.label}>Current Project</span>
             <span className={styles.value}>
-              <Briefcase size={14} /> {employee.project?.name || 'Bench'}
+              <Briefcase size={14} />
+              {employee.project ? (
+                <Link
+                  href={`/projects/${employee.project.id}`}
+                  className={styles.projectLink}
+                >
+                  {employee.project.name}
+                </Link>
+              ) : (
+                'Bench'
+              )}
             </span>
           </div>
           <div className={styles.infoItem}>

@@ -8,8 +8,26 @@ import { gql } from '@apollo/client';
 import { useRouter } from 'next/navigation';
 import dayjs from 'dayjs';
 import { useMutation } from '@apollo/client/react';
+import DataSelect from "../DataSelect/DataSelect";
 
-import styles from './EditEmployeeModal.module.css';
+import styles from "./EditEmployeeModal.module.css";
+
+const GET_PROJECTS = gql`
+  query {
+    projects {
+      id
+      name
+    }
+  }
+`;
+const GET_POSITIONS = gql`
+  query {
+    positions {
+      id
+      position_name
+    }
+  }
+`;
 
 const UPDATE_EMPLOYEE = gql`
   mutation UpdateEmployee($id: ID!, $updatedData: EmployeeUpdatingPayload!) {
@@ -26,36 +44,28 @@ export default function EditEmployeeModal({ employee }) {
 
   const [updateEmployee, { loading }] = useMutation(UPDATE_EMPLOYEE, {
     onCompleted: () => {
-      message.success('Profile updated successfully');
+      message.success("Employee updated successfully");
       setIsModalOpen(false);
       router.refresh();
     },
-    onError: (error) => {
-      message.error(`Update failed: ${error.message}`);
-    }
+    onError: (err) => message.error(err.message),
   });
 
   const handleSubmit = async () => {
-    try {
-      const values = await form.validateFields();
-      await updateEmployee({
-        variables: {
-          id: employee.id,
-          updatedData: {
-            first_name: values.first_name,
-            last_name: values.last_name,
-            email: values.email,
-            phone: values.phone || null,
-            city: values.city || null,
-            birthday: values.birthday ? values.birthday.toISOString() : null,
-            join_date: values.join_date ? values.join_date.toISOString() : null,
-          }
-        }
-      });
-    } catch (info) {
-      console.log('Validation Failed:', info);
-    }
+    const values = await form.validateFields();
+    updateEmployee({
+      variables: {
+        id: employee.id,
+        updatedData: {
+          ...values,
+          birthday: values.birthday?.toISOString(),
+          join_date: values.join_date?.toISOString(),
+        },
+      },
+    });
   };
+  console.log(employee, 'xxx');
+
 
   return (
     <>
@@ -72,9 +82,7 @@ export default function EditEmployeeModal({ employee }) {
         onOk={handleSubmit}
         onCancel={() => setIsModalOpen(false)}
         confirmLoading={loading}
-        okText="Save Changes"
-        width={600}
-        centered
+        width={700}
       >
         <Form
           form={form}
@@ -82,8 +90,14 @@ export default function EditEmployeeModal({ employee }) {
           className={styles.modalForm}
           initialValues={{
             ...employee,
-            birthday: employee.birthday ? dayjs(Number(employee.birthday)) : null,
-            join_date: employee.join_date ? dayjs(Number(employee.join_date)) : null,
+            project: employee.project?.id,
+            position: employee.position?.id,
+            birthday: employee.birthday
+              ? dayjs(Number(employee.birthday))
+              : null,
+            join_date: employee.join_date
+              ? dayjs(Number(employee.join_date))
+              : null,
           }}
         >
           <div className={styles.row}>
@@ -95,17 +109,28 @@ export default function EditEmployeeModal({ employee }) {
             </Form.Item>
           </div>
 
-          <Form.Item name="email" label="Email" rules={[{ required: true, type: 'email' }]}>
-            <Input placeholder="example@company.com" />
-          </Form.Item>
+          <div className={styles.row}>
+            <Form.Item
+              name="position"
+              label="Position"
+              rules={[{ required: true }]}
+            >
+              <DataSelect
+                query={GET_POSITIONS}
+                dataKey="positions"
+                labelKey="position_name"
+                placeholder="Select position"
+              />
+            </Form.Item>
 
-          <Form.Item name="phone" label="Phone Number">
-            <Input placeholder="+380..." />
-          </Form.Item>
-
-          <Form.Item name="city" label="City">
-            <Input placeholder="e.g. Kyiv" />
-          </Form.Item>
+            <Form.Item name="project" label="Project">
+              <DataSelect
+                query={GET_PROJECTS}
+                dataKey="projects"
+                placeholder="Select project"
+              />
+            </Form.Item>
+          </div>
 
           <div className={styles.row}>
             <Form.Item name="birthday" label="Birthday">
@@ -131,7 +156,10 @@ EditEmployeeModal.propTypes = {
     join_date: PropTypes.number.isRequired,
     birthday: PropTypes.number.isRequired,
     project: PropTypes.shape({
-      name: PropTypes.string.isRequired
+      id: PropTypes.string.isRequired
+    }),
+    position: PropTypes.shape({
+      id: PropTypes.string.isRequired
     })
   })
 }
