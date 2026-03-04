@@ -1,0 +1,21 @@
+.modalForm {
+  padding-top: 16px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+:global(.ant-modal-header) {
+  margin-bottom: 24px;
+}
+
+:global(.ant-form-item-label) {
+  font-weight: 500;
+}

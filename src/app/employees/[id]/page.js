@@ -5,14 +5,14 @@ import { notFound } from "next/navigation";
 import Title from 'antd/lib/typography/Title';
 import Text from 'antd/lib/typography/Text';
 import Card from 'antd/lib/card';
-import Button from 'antd/lib/button';
 import Tag from 'antd/lib/tag';
 
-import { Edit2, Calendar, Mail, Phone, MapPin, Briefcase } from 'lucide-react';
+import { Calendar, Mail, Phone, MapPin, Briefcase } from 'lucide-react';
 
 import styles from './EmployeePage.module.css';
 import BackButton from "@/components/BackButton/BackButton";
 import DeleteEmployeeButton from "@/components/DeleteEmployeeButton";
+import EditEmployeeModal from "@/components/EditEmployeeModal/EditEmployeeModal";
 
 const formatDate = (dateValue) => {
   if (!dateValue) return 'N/A';
@@ -72,7 +72,7 @@ export default async function EmployeePage({ params }) {
         </div>
 
         <div className={styles.actionButtons}>
-          <Button icon={<Edit2 size={16} />}>Edit Profile</Button>
+          <EditEmployeeModal employee={employee}/>
           <DeleteEmployeeButton
             employeeId={employee.id}
             employeeName={`${employee.first_name} ${employee.last_name}`}
