@@ -1,7 +1,7 @@
 .container {
+  padding: 40px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px;
 }
 
 .header {
@@ -14,33 +14,33 @@
 
 .card {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
 }
 
 .cardBody {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
 }
 
 .iconWrapper {
-  padding: 12px;
-  border-radius: 8px;
+  width: 54px;
+  height: 54px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.iconWrapper--blue {
-  background: #e6f7ff;
+.blue {
+  background-color: #e6f7ff;
 }
-
-.iconWrapper--green {
-  background: #f6ffed;
-}
-
-.iconWrapper--orange {
-  background: #fff7e6;
+.green {
+  background-color: #f6ffed;
 }
 
 .statTitle {
-  margin: 0;
+  margin: 0 !important;
 }
 
 .divider {

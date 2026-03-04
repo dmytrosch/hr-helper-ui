@@ -8,12 +8,13 @@ import Col from 'antd/lib/col';
 import Button from 'antd/lib/button';
 import Divider from 'antd/lib/divider';
 import Link from 'next/link';
-import { Users, Briefcase, MapPin, ArrowRight } from 'lucide-react';
+import { Users, Briefcase, ArrowRight } from 'lucide-react';
 import styles from './page.module.css';
 
 const GET_STATS = gql`
   query GetStats {
-    employees {
+    employees { id }
+    activeProjects: projects(filter: active) {
       id
     }
   }
@@ -21,8 +22,13 @@ const GET_STATS = gql`
 
 export default async function HomePage() {
   const client = getClient();
-  const { data } = await client.query({ query: GET_STATS });
+  const { data } = await client.query({
+    query: GET_STATS,
+    fetchPolicy: 'no-cache'
+  });
+
   const totalEmployees = data?.employees?.length || 0;
+  const totalProjects = data?.activeProjects?.length || 0;
 
   return (
     <div className={styles.container}>
@@ -34,10 +40,10 @@ export default async function HomePage() {
       </header>
 
       <Row gutter={[24, 24]}>
-        <Col xs={24} sm={12} md={8}>
+        <Col xs={24} sm={12} md={10}>
           <Card variant="borderless" className={styles.card}>
             <div className={styles.cardBody}>
-              <div className={`${styles.iconWrapper} ${styles['iconWrapper--blue']}`}>
+              <div className={`${styles.iconWrapper} ${styles.blue}`}>
                 <Users color="#1890ff" size={24} />
               </div>
               <div>
@@ -48,29 +54,15 @@ export default async function HomePage() {
           </Card>
         </Col>
 
-        <Col xs={24} sm={12} md={8}>
+        <Col xs={24} sm={12} md={10}>
           <Card variant="borderless" className={styles.card}>
             <div className={styles.cardBody}>
-              <div className={`${styles.iconWrapper} ${styles['iconWrapper--green']}`}>
+              <div className={`${styles.iconWrapper} ${styles.green}`}>
                 <Briefcase color="#52c41a" size={24} />
               </div>
               <div>
-                <Text type="secondary" block="true">Active Projects</Text>
-                <Title level={3} className={styles.statTitle}>12</Title>
-              </div>
-            </div>
-          </Card>
-        </Col>
-
-        <Col xs={24} sm={12} md={8}>
-          <Card variant="borderless" className={styles.card}>
-            <div className={styles.cardBody}>
-              <div className={`${styles.iconWrapper} ${styles['iconWrapper--orange']}`}>
-                <MapPin color="#faad14" size={24} />
-              </div>
-              <div>
-                <Text type="secondary" block="true">Office Locations</Text>
-                <Title level={3} className={styles.statTitle}>4</Title>
+                <Text type="secondary" block='true'>Active Projects</Text>
+                <Title level={3} className={styles.statTitle}>{totalProjects}</Title>
               </div>
             </div>
           </Card>
@@ -84,13 +76,17 @@ export default async function HomePage() {
         <Row gutter={[16, 16]}>
           <Col>
             <Link href="/employees">
-              <Button type="primary" size="large" icon={<ArrowRight size={16} />}>
+              <Button type="primary" size="large" icon={<Users size={18} />}>
                 View Employee Directory
               </Button>
             </Link>
           </Col>
           <Col>
-            <Button size="large">Generate Reports</Button>
+            <Link href="/projects">
+              <Button size="large" icon={<Briefcase size={18} />}>
+                View Projects Directory
+              </Button>
+            </Link>
           </Col>
         </Row>
       </section>
