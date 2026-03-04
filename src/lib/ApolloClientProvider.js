@@ -6,7 +6,7 @@ import { ApolloProvider } from '@apollo/client/react';
 export const ApolloClientProvider = ({ children }) => {
   const client = new ApolloClient({
     link: new HttpLink({
-      uri: "https://hr-helper.onrender.com/graphql",
+      uri: 'https://hr-helper.onrender.com/graphql',
     }),
     cache: new InMemoryCache(),
   });

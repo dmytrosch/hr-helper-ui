@@ -1,7 +1,7 @@
-import { getClient } from "@/lib/apollo-client";
-import { gql } from "@apollo/client";
-import { notFound } from "next/navigation";
-import Link from "next/link";
+import { getClient } from '@/lib/apollo-client';
+import { gql } from '@apollo/client';
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
 
 import Title from 'antd/lib/typography/Title';
 import Text from 'antd/lib/typography/Text';
@@ -11,9 +11,9 @@ import Tag from 'antd/lib/tag';
 import { Calendar, Mail, Phone, MapPin, Briefcase } from 'lucide-react';
 
 import styles from './EmployeePage.module.css';
-import BackButton from "@/components/BackButton/BackButton";
-import DeleteEmployeeButton from "@/components/DeleteEmployeeButton";
-import EditEmployeeModal from "@/components/EditEmployeeModal/EditEmployeeModal";
+import BackButton from '@/components/BackButton/BackButton';
+import DeleteEmployeeButton from '@/components/DeleteEmployeeButton';
+import EditEmployeeModal from '@/components/EditEmployeeModal/EditEmployeeModal';
 
 const formatDate = (dateValue) => {
   if (!dateValue) return 'N/A';
@@ -21,7 +21,7 @@ const formatDate = (dateValue) => {
   return date.toLocaleDateString('en', {
     day: '2-digit',
     month: 'long',
-    year: 'numeric'
+    year: 'numeric',
   });
 };
 
@@ -36,8 +36,14 @@ const GET_EMPLOYEE = gql`
       city
       birthday
       join_date
-      position { position_name id }
-      project { name id }
+      position {
+        position_name
+        id
+      }
+      project {
+        name
+        id
+      }
     }
   }
 `;
@@ -49,7 +55,7 @@ export default async function EmployeePage({ params }) {
   const { data } = await client.query({
     query: GET_EMPLOYEE,
     variables: { id },
-    fetchPolicy: 'no-cache'
+    fetchPolicy: 'no-cache',
   });
 
   const employee = data?.employee;
@@ -66,7 +72,9 @@ export default async function EmployeePage({ params }) {
           <Title level={2} style={{ margin: 0 }}>
             {employee.first_name} {employee.last_name}
           </Title>
-          <Text className={styles.position} type="secondary">{employee.position?.position_name || 'No Position Assigned'}</Text>
+          <Text className={styles.position} type="secondary">
+            {employee.position?.position_name || 'No Position Assigned'}
+          </Text>
           <Tag color="blue" style={{ width: 'fit-content', marginTop: '8px' }}>
             ID: {employee.id}
           </Tag>
@@ -85,15 +93,21 @@ export default async function EmployeePage({ params }) {
         <Card title="Contact Information" variant="bordless">
           <div className={styles.infoItem}>
             <span className={styles.label}>Email Address</span>
-            <span className={styles.value}><Mail size={14} /> {employee.email}</span>
+            <span className={styles.value}>
+              <Mail size={14} /> {employee.email}
+            </span>
           </div>
           <div className={styles.infoItem}>
             <span className={styles.label}>Phone Number</span>
-            <span className={styles.value}><Phone size={14} /> {employee.phone}</span>
+            <span className={styles.value}>
+              <Phone size={14} /> {employee.phone}
+            </span>
           </div>
           <div className={styles.infoItem}>
             <span className={styles.label}>Location</span>
-            <span className={styles.value}><MapPin size={14} /> {employee.city}</span>
+            <span className={styles.value}>
+              <MapPin size={14} /> {employee.city}
+            </span>
           </div>
         </Card>
 

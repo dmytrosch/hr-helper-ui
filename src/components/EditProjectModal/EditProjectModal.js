@@ -29,7 +29,7 @@ export default function EditProjectModal({ project }) {
       setIsModalOpen(false);
       router.refresh();
     },
-    onError: (error) => message.error(error.message)
+    onError: (error) => message.error(error.message),
   });
 
   const handleSubmit = async () => {
@@ -41,9 +41,9 @@ export default function EditProjectModal({ project }) {
           name: values.name,
           contact_person: values.contact_person,
           contact_email: values.contact_email,
-          isActive: values.isActive
-        }
-      }
+          isActive: values.isActive,
+        },
+      },
     });
   };
 
@@ -66,16 +66,32 @@ export default function EditProjectModal({ project }) {
           className={styles.modalForm}
           initialValues={project}
         >
-          <Form.Item name="name" label="Project Name" rules={[{ required: true }]}>
+          <Form.Item
+            name="name"
+            label="Project Name"
+            rules={[{ required: true }]}
+          >
             <Input />
           </Form.Item>
-          <Form.Item name="contact_person" label="Contact Person" rules={[{ required: true }]}>
+          <Form.Item
+            name="contact_person"
+            label="Contact Person"
+            rules={[{ required: true }]}
+          >
             <Input />
           </Form.Item>
-          <Form.Item name="contact_email" label="Contact Email" rules={[{ required: true, type: 'email' }]}>
+          <Form.Item
+            name="contact_email"
+            label="Contact Email"
+            rules={[{ required: true, type: 'email' }]}
+          >
             <Input />
           </Form.Item>
-          <Form.Item name="isActive" label="Project Active" valuePropName="checked">
+          <Form.Item
+            name="isActive"
+            label="Project Active"
+            valuePropName="checked"
+          >
             <Switch />
           </Form.Item>
         </Form>

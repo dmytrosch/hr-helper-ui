@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
 import { ArrowLeft } from 'lucide-react';
-import styles from './BackButton.module.css'
+import styles from './BackButton.module.css';
 import { useRouter } from 'next/navigation';
 
 export default function BackButton() {

@@ -1,5 +1,5 @@
-import { getClient } from "@/lib/apollo-client";
-import { gql } from "@apollo/client";
+import { getClient } from '@/lib/apollo-client';
+import { gql } from '@apollo/client';
 import Title from 'antd/lib/typography/Title';
 import Text from 'antd/lib/typography/Text';
 import Card from 'antd/lib/card';
@@ -8,12 +8,14 @@ import Col from 'antd/lib/col';
 import Button from 'antd/lib/button';
 import Divider from 'antd/lib/divider';
 import Link from 'next/link';
-import { Users, Briefcase, ArrowRight } from 'lucide-react';
+import { Users, Briefcase } from 'lucide-react';
 import styles from './page.module.css';
 
 const GET_STATS = gql`
   query GetStats {
-    employees { id }
+    employees {
+      id
+    }
     activeProjects: projects(filter: active) {
       id
     }
@@ -24,7 +26,7 @@ export default async function HomePage() {
   const client = getClient();
   const { data } = await client.query({
     query: GET_STATS,
-    fetchPolicy: 'no-cache'
+    fetchPolicy: 'no-cache',
   });
 
   const totalEmployees = data?.employees?.length || 0;
@@ -47,8 +49,12 @@ export default async function HomePage() {
                 <Users color="#1890ff" size={24} />
               </div>
               <div>
-                <Text type="secondary" block="true">Total Employees</Text>
-                <Title level={3} className={styles.statTitle}>{totalEmployees}</Title>
+                <Text type="secondary" block="true">
+                  Total Employees
+                </Text>
+                <Title level={3} className={styles.statTitle}>
+                  {totalEmployees}
+                </Title>
               </div>
             </div>
           </Card>
@@ -61,8 +67,12 @@ export default async function HomePage() {
                 <Briefcase color="#52c41a" size={24} />
               </div>
               <div>
-                <Text type="secondary" block='true'>Active Projects</Text>
-                <Title level={3} className={styles.statTitle}>{totalProjects}</Title>
+                <Text type="secondary" block="true">
+                  Active Projects
+                </Text>
+                <Title level={3} className={styles.statTitle}>
+                  {totalProjects}
+                </Title>
               </div>
             </div>
           </Card>

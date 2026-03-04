@@ -1,12 +1,11 @@
-import { getClient } from "@/lib/apollo-client";
-import { gql } from "@apollo/client";
+import { getClient } from '@/lib/apollo-client';
+import { gql } from '@apollo/client';
 import { Card, Tag, Button } from 'antd';
 import { User, Mail, Plus } from 'lucide-react';
-import Text from "antd/es/typography/Text";
-import Title from "antd/es/typography/Title";
+import Text from 'antd/es/typography/Text';
+import Title from 'antd/es/typography/Title';
 import Link from 'next/link';
 import styles from './projects.module.css';
-
 
 const GET_PROJECTS = gql`
   query GetProjects($filter: ProjectFilters) {
@@ -46,13 +45,17 @@ export default async function ProjectsPage({ searchParams }) {
 
       <div className={styles.grid}>
         {data.projects.map((project) => (
-          <Link href={`/projects/${project.id}`} key={project.id} style={{ textDecoration: 'none' }}>
+          <Link
+            href={`/projects/${project.id}`}
+            key={project.id}
+            style={{ textDecoration: 'none' }}
+          >
             <Card
               title={project.name}
               className={styles.projectCard}
               extra={
-                <Tag color={project.isActive ? "green" : "red"}>
-                  {project.isActive ? "Active" : "Inactive"}
+                <Tag color={project.isActive ? 'green' : 'red'}>
+                  {project.isActive ? 'Active' : 'Inactive'}
                 </Tag>
               }
             >

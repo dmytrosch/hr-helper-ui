@@ -38,7 +38,9 @@ export default function Navbar() {
   return (
     <Header className={styles.header}>
       <div className={styles.logo}>
-        <Text strong className={styles.logoText}>HR Helper</Text>
+        <Text strong className={styles.logoText}>
+          HR Helper
+        </Text>
       </div>
       <Menu
         mode="horizontal"

@@ -7,13 +7,15 @@ export default function GlobalError({ error, reset }) {
   return (
     <html>
       <body>
-        <div style={{ 
-          height: '100vh', 
-          display: 'flex', 
-          alignItems: 'center', 
-          justifyContent: 'center',
-          background: '#fff' 
-        }}>
+        <div
+          style={{
+            height: '100vh',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: '#fff',
+          }}
+        >
           <Result
             status="500"
             title={error.name}
