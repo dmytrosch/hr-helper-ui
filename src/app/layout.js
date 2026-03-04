@@ -7,6 +7,7 @@ import Content from 'antd/lib/layout/layout';
 import Navbar from '@/components/Navbar';
 import { Suspense } from 'react';
 import Spin from 'antd/lib/spin';
+import { ApolloClientProvider } from '@/lib/ApolloClientProvider';
 
 export const metadata = {
   title: 'HR Helper',
@@ -22,7 +23,9 @@ export default function RootLayout({ children }) {
             <Navbar />
             <Suspense fallback={<Spin fullscreen />}>
               <Content className={styles.content}>
-                {children}
+                <ApolloClientProvider>
+                  {children}
+                </ApolloClientProvider>
               </Content>
             </Suspense>
           </Layout>

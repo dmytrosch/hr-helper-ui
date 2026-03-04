@@ -8,7 +8,7 @@ export const getClient = () => {
     }),
     defaultOptions: {
       query: {
-        fetchPolicy: 'no-cache', // Щоб завжди отримувати свіжі дані
+        fetchPolicy: 'no-cache',
       },
     },
   });
