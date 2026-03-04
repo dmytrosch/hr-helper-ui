@@ -11,7 +11,11 @@ const { Text } = Typography;
 
 export default function Navbar() {
   const pathname = usePathname();
-  const selectedKey = pathname.startsWith('/employees') ? 'employees' : 'home';
+  const getSelectedKey = () => {
+    if (pathname.startsWith('/employees')) return 'employees';
+    if (pathname.startsWith('/projects')) return 'projects';
+    return 'home';
+  };
 
   const menuItems = [
     {
@@ -38,7 +42,7 @@ export default function Navbar() {
       </div>
       <Menu
         mode="horizontal"
-        selectedKeys={[selectedKey]}
+        selectedKeys={[getSelectedKey()]}
         items={menuItems}
         className={styles.menu}
       />

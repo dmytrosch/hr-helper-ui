@@ -4,7 +4,7 @@ import styles from './layout.module.css';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import Layout from 'antd/lib/layout';
 import Content from 'antd/lib/layout/layout';
-import Navbar from '@/components/Navbar';
+import Navbar from '@/components/Navbar/Navbar';
 import { Suspense } from 'react';
 import Spin from 'antd/lib/spin';
 import { ApolloClientProvider } from '@/lib/ApolloClientProvider';
