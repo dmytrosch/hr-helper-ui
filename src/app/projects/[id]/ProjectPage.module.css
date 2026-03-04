@@ -1,0 +1,116 @@
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.backButtonContainer {
+  margin-bottom: 20px;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #595959;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-size: 14px;
+}
+
+.backLink:hover {
+  color: #1677ff;
+}
+
+.header {
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.projectInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 12px;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .cardGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.infoItem:last-child {
+  border-bottom: none;
+}
+
+.label {
+  color: #8c8c8c;
+  min-width: 140px;
+  font-size: 14px;
+}
+
+.value {
+  color: #262626;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.employeeListItem {
+  padding: 12px;
+  border-bottom: 1px solid #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.2s;
+  border-radius: 8px;
+}
+
+.employeeListItem:hover {
+  background-color: #fafafa;
+}
+
+.employeeListItem:last-child {
+  border-bottom: none;
+}
+
+.employeeName {
+  font-weight: 500;
+  color: #1677ff;
+  text-decoration: none;
+}
+
+.employeeName:hover {
+  text-decoration: underline;
+}
+
+.employeeRole {
+  color: #8c8c8c;
+  font-size: 13px;
+}
