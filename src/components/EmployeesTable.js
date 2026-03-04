@@ -1,5 +1,6 @@
 "use client";
 import { Table, Tag, Button, Space } from "antd";
+import PropTypes from 'prop-types';
 import Typography from "antd/es/typography";
 import { Eye, Mail, Phone, MapPin } from "lucide-react";
 import Link from "next/link";
@@ -7,7 +8,7 @@ import styles from "../app/employees/employees.module.css";
 
 const { Text } = Typography;
 
-export default function EmployeeTable({ employees }) {
+export default function EmployeesTable({ employees }) {
   const columns = [
     {
       title: "Name",
@@ -82,4 +83,8 @@ export default function EmployeeTable({ employees }) {
       scroll={{ x: 1000 }}
     />
   );
+}
+
+EmployeesTable.propTypes = {
+  employees: PropTypes.arrayOf(PropTypes.object).isRequired
 }

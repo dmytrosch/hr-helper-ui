@@ -1,0 +1,61 @@
+.employeeContainer {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.employeeHeader {
+  text-align: center;
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+}
+
+.actionButtons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.infoCard {
+  border-radius: 12px !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  margin-bottom: 24px;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.infoItem:last-child {
+  border-bottom: none;
+}
+
+.label {
+  color: #8c8c8c;
+  min-width: 140px;
+}
+
+.value {
+  color: #262626;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon {
+  color: #1677ff;
+  display: flex;
+}
+
+.position {
+  margin-right: 10px;
+}
