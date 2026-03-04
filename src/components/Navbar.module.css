@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  align-items: center;
+  background: #fff !important;
+  padding: 0 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: 64px;
+}
+
+.logo {
+  margin-right: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.logoText {
+  font-size: 18px;
+  color: #1677ff !important;
+}
+
+.menu {
+  flex: 1;
+  border: none;
+}
+
+.settingsIcon {
+  margin-left: auto;
+  color: #8c8c8c;
+  cursor: pointer;
+}
