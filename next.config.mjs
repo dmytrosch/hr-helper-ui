@@ -2,7 +2,7 @@
 const nextConfig = {
   /* config options here */
   reactCompiler: true,
-  transpilePackages: ['antd']
+  transpilePackages: ['antd'],
 };
 
 export default nextConfig;

@@ -4,7 +4,7 @@ export const getClient = () => {
   return new ApolloClient({
     cache: new InMemoryCache(),
     link: new HttpLink({
-      uri: "https://hr-helper.onrender.com/graphql", 
+      uri: 'https://hr-helper.onrender.com/graphql',
     }),
     defaultOptions: {
       query: {

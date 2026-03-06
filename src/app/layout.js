@@ -23,9 +23,7 @@ export default function RootLayout({ children }) {
             <Navbar />
             <Suspense fallback={<Spin fullscreen />}>
               <Content className={styles.content}>
-                <ApolloClientProvider>
-                  {children}
-                </ApolloClientProvider>
+                <ApolloClientProvider>{children}</ApolloClientProvider>
               </Content>
             </Suspense>
           </Layout>

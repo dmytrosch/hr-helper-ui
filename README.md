@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# HR Helper — Employee & Project Management System
 
-## Getting Started
+**HR Helper** is a modern, full-stack web application designed for streamlined human resources management. It allows HR departments to track employees, manage project assignments, and visualize organizational statistics through an intuitive, real-time dashboard.
 
-First, run the development server:
+## 🔗 Links
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Live Demo**: [https://hr-helper-ui.vercel.app/](https://hr-helper-ui.vercel.app/)
+- **GraphQL API Endpoint**: [https://hr-helper.onrender.com/graphql](https://hr-helper.onrender.com/graphql)
+- **API Repository**: [github.com/dmytrosch/hr_helper_api](https://github.com/dmytrosch/hr_helper_api)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Tech Stack
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Frontend**: **Next.js 15+** (App Router)
+- **UI Components**: **Ant Design (antd)**
+- **Data Fetching**: **Apollo Client** (GraphQL)
+- **Styling**: **CSS Modules**
+- **Icons**: **Lucide React**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ✨ Key Features
 
-## Learn More
+### 📊 Dashboard
 
-To learn more about Next.js, take a look at the following resources:
+- **Real-time Statistics**: Instant overview of the total employee count and the number of currently active projects.
+- **Quick Actions**: Streamlined navigation to the most used sections of the app.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 👥 Employee Management
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Centralized Directory**: A searchable and filterable list of all staff members.
+- **Rich Profiles**: Comprehensive views including contact details, location, join dates, and current project involvement.
+- **Interactive Editing**: A robust modal system for updating employee profiles, including dynamic selectors for positions and projects.
+- **Safe Deletion**: Integrated `Popconfirm` protection to prevent accidental data loss.
 
-## Deploy on Vercel
+### 📂 Project Management
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Project Directory**: High-level overview of the organization's portfolio.
+- **Detailed Project Pages**: Dedicated views for project status, client/contact information, and team composition with direct cross-links to employee profiles.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🏗️ Project Structure
+
+- **`app/`** — Next.js App Router containing pages for the Dashboard, Employee list, and Project details.
+- **`components/`** — Reusable UI units including:
+  - **`DataSelect`**: A generic, GraphQL-powered component for fetching and selecting dynamic data.
+  - **`EditEmployeeModal`**: A complex form management system for profile updates.
+  - **`DeleteButtons`**: Action-specific components with built-in confirmation logic.
+- **`lib/`** — Apollo Client configuration and GraphQL provider setup.
+
+## 📝 License
+
+This project is licensed under the MIT License.

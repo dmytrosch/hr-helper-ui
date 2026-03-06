@@ -8,9 +8,9 @@ import { gql } from '@apollo/client';
 import { useRouter } from 'next/navigation';
 import dayjs from 'dayjs';
 import { useMutation } from '@apollo/client/react';
-import DataSelect from "../DataSelect/DataSelect";
+import DataSelect from '../DataSelect/DataSelect';
 
-import styles from "./EditEmployeeModal.module.css";
+import styles from './EditEmployeeModal.module.css';
 
 const GET_PROJECTS = gql`
   query {
@@ -44,7 +44,7 @@ export default function EditEmployeeModal({ employee }) {
 
   const [updateEmployee, { loading }] = useMutation(UPDATE_EMPLOYEE, {
     onCompleted: () => {
-      message.success("Employee updated successfully");
+      message.success('Employee updated successfully');
       setIsModalOpen(false);
       router.refresh();
     },
@@ -64,15 +64,10 @@ export default function EditEmployeeModal({ employee }) {
       },
     });
   };
-  console.log(employee, 'xxx');
-
 
   return (
     <>
-      <Button
-        icon={<Edit2 size={16} />}
-        onClick={() => setIsModalOpen(true)}
-      >
+      <Button icon={<Edit2 size={16} />} onClick={() => setIsModalOpen(true)}>
         Edit Profile
       </Button>
 
@@ -101,10 +96,18 @@ export default function EditEmployeeModal({ employee }) {
           }}
         >
           <div className={styles.row}>
-            <Form.Item name="first_name" label="First Name" rules={[{ required: true }]}>
+            <Form.Item
+              name="first_name"
+              label="First Name"
+              rules={[{ required: true }]}
+            >
               <Input placeholder="Enter first name" />
             </Form.Item>
-            <Form.Item name="last_name" label="Last Name" rules={[{ required: true }]}>
+            <Form.Item
+              name="last_name"
+              label="Last Name"
+              rules={[{ required: true }]}
+            >
               <Input placeholder="Enter last name" />
             </Form.Item>
           </div>
@@ -156,10 +159,10 @@ EditEmployeeModal.propTypes = {
     join_date: PropTypes.number.isRequired,
     birthday: PropTypes.number.isRequired,
     project: PropTypes.shape({
-      id: PropTypes.string.isRequired
+      id: PropTypes.string.isRequired,
     }),
     position: PropTypes.shape({
-      id: PropTypes.string.isRequired
-    })
-  })
-}
+      id: PropTypes.string.isRequired,
+    }),
+  }),
+};
